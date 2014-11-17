@@ -42,7 +42,8 @@ public class Linpack {
   public static void main(String[] args)
   {
     Linpack l = new Linpack();
-    l.run_benchmark();
+    int lda = Integer.parseInt(args[0]);
+    l.run_benchmark(lda);
   }
 
   final double abs (double d) {
@@ -59,36 +60,40 @@ public class Linpack {
     return (System.currentTimeMillis() - second_orig)/1000;
   }
 
-  public void run_benchmark() 
+  public void run_benchmark(int order) 
   {
     double mflops_result = 0.0;
     double residn_result = 0.0;
     double time_result = 0.0;
     double eps_result = 0.0;
 
-    double a[][] = new double[200][201];
-    double b[] = new double[200];
-    double x[] = new double[200];
+    int n,i,ntimes,info,lda,ldaa,kflops;
     double cray,ops,total,norma,normx;
+    
+    lda = order+1;
+    ldaa = lda-1;
+    cray = .056;
+    n = lda/2;
+    
+    double a[][] = new double[ldaa][lda];
+    double b[] = new double[ldaa];
+    double x[] = new double[ldaa];
+    
     double resid,time;
     double kf;
-    int n,i,ntimes,info,lda,ldaa,kflops;
-    int ipvt[] = new int[200];
+    
+    int ipvt[] = new int[ldaa];
     
     //double mflops_result;
     //double residn_result;
     //double time_result;
     //double eps_result;
 
-    lda = 201;
-    ldaa = 200;
-    cray = .056;
-    n = 100;
-    
-    ops = (2.0e0*(n*n*n))/3.0 + 2.0*(n*n);
+    ops = (2.0e0*((long)n*n*n))/3.0 + 2.0*((long)n*n);
     
     norma = matgen(a,lda,n,b);
     time = second();
+    System.gc();
     info = dgefa(a,lda,n,ipvt);
     dgesl(a,lda,n,ipvt,b,0);
     total = second() - time;
@@ -109,17 +114,7 @@ public class Linpack {
     }
     
     eps_result = epslon((double)1.0);
-/*
 
-    residn_result = resid/( n*norma*normx*eps_result );
-    time_result = total;
-    mflops_result = ops/(1.0e6*total);
-
-    return ("Mflops/s: " + mflops_result +
-	    "  Time: " + time_result + " secs" +
-	    "  Norm Res: " + residn_result +
-	    "  Precision: " + eps_result);
-*/
 	residn_result = resid/( n*norma*normx*eps_result );
 	residn_result += 0.005; // for rounding
 	residn_result = (int)(residn_result*100);
@@ -129,7 +124,7 @@ public class Linpack {
 	time_result += 0.005; // for rounding
 	time_result = (int)(time_result*100);
 	time_result /= 100;
-
+ 
 	mflops_result = ops/(1.0e6*total);
 	mflops_result += 0.0005; // for rounding
 	mflops_result = (int)(mflops_result*1000);
