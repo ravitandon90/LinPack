@@ -93,8 +93,8 @@ public class Linpack {
     
     norma = matgen(a,lda,n,b);
     time = second();
-    System.gc();
     info = dgefa(a,lda,n,ipvt);
+    System.gc();
     dgesl(a,lda,n,ipvt,b,0);
     total = second() - time;
     
