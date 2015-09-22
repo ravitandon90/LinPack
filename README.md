@@ -18,7 +18,7 @@ To run:
 
 ## Notes
 
-"""Modified 3/3/97 by David M. Doolin (dmd) doolin@cs.utk.edu
+Modified 3/3/97 by David M. Doolin (dmd) doolin@cs.utk.edu
 Fixed error in matgen() method. Added some comments.
 
 Modified 1/22/97 by Paul McMahan mcmahan@cs.utk.edu
@@ -48,4 +48,3 @@ Translated to C by Bonnie Toy 5/88
   (modified on 2/25/94  to fix a problem with daxpy  for
    unequal increments or equal increments not equal to 1.
      Jack Dongarra)
-"""
