@@ -16,15 +16,15 @@ To run:
 
     java Linpack
 
-## Notes
+## Contributors
 
-Modified 3/3/97 by David M. Doolin (dmd) doolin@cs.utk.edu
+Modified 3/3/97 by David M. Doolin (dmd) doolin[at]cs.utk.edu
 Fixed error in matgen() method. Added some comments.
 
-Modified 1/22/97 by Paul McMahan mcmahan@cs.utk.edu
+Modified 1/22/97 by Paul McMahan mcmahan[at]cs.utk.edu
 Added more MacOS options to form.
 
-Optimized by Jonathan Hardwick (jch@cs.cmu.edu), 3/28/96
+Optimized by Jonathan Hardwick (jch[at]cs.cmu.edu), 3/28/96
 Compare to Linkpack.java.
 Optimizations performed:
 
@@ -39,7 +39,7 @@ Optimizations performed:
 See http://www.cs.cmu.edu/~jch/java/linpack.html for more details.
 
 
-Ported to Java by Reed Wade  (wade@cs.utk.edu) 2/96
+Ported to Java by Reed Wade  (wade[cs.utk.edu) 2/96
 built using JDK 1.0 on solaris
 using "javac -O Linpack.java"
 
