@@ -1,8 +1,0 @@
-
-To compile:
-
-  javac -O Linpack.java
-
-To run:
-
-  java Linpack
